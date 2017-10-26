@@ -1,0 +1,8 @@
+include *.txt
+include *.rst
+include funyun/bin/server_env
+recursive-include funyun/etc *
+recursive-include funyun/static *
+recursive-include funyun/templates *
+recursive-include funyun/test *
+recursive-include funyun/var *

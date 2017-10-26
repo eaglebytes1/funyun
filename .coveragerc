@@ -1,0 +1,25 @@
+;
+; Configuration file for coverage tool.
+;
+[run]
+branch = False
+data_file = /tmp/.coverage
+parallel = True
+source = funyun
+omit =
+    bin/*
+    css/*
+    etc/*
+    favicon.ico
+    static/*
+    templates/*
+    test/*
+    version.py
+
+[report]
+exclude_lines =
+    if self.debug:
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
+ignore_errors = True

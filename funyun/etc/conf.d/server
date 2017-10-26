@@ -1,0 +1,32 @@
+# config file for {{NAME}} version {{VERSION}} in {{MODE}} mode.
+# Templated on node {{HOSTNAME}} on {{DATETIME}} by {{USER}}.
+#
+# This file sets values needed by the server_dirs and 
+# rc.d startup scripts.  The  variables are:
+#
+#      {{NAME}}_root     Root of the package, with bin/ and etc/ directories.
+#      {{NAME}}_var      Home of the redis/ and run/ directories.
+#      {{NAME}}_log      Home of the logfiles.
+#      {{NAME}}_tmp      Home of the tmp files.
+#      {{NAME}}_data     Home of persistent data files.
+#      {{NAME}}_user     User to execute the {{NAME}}_env script as.
+#      {{NAME}}_group    Group for directory creation.
+#      {{NAME}}_umask    Process umask for file/directory creation.
+#      {{NAME}}_flags    Flags for the {{NAME}}_env script (e.g., "-v").
+#      {{NAME}}_enable   Set to "YES" if the service is to be started.
+#
+{{NAME}}_root="{{ROOT}}"
+{{NAME}}_var="{{VAR}}"
+{{NAME}}_log="{{LOG}}"
+{{NAME}}_tmp="{{TMP}}"
+{{NAME}}_data="{{DATA}}"
+{{NAME}}_user="{{RC_USER}}"
+{{NAME}}_group="{{RC_GROUP}}"
+{{NAME}}_command_args="{{RC_VERBOSE}}"
+{{NAME}}_umask="{{PROCESS_UMASK}}"
+{% if RC_VERBOSE %}
+{{NAME}}_flags="-v"
+{% else %}
+{{NAME}}_flags=""
+{% endif %}
+{{NAME}}_enable="YES"

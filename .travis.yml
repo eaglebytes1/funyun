@@ -1,0 +1,19 @@
+sudo: false
+language: python
+python:
+   - "3.5"
+before_install:
+   - export root_dir="$(python -c 'import sys;print(sys.prefix)')"
+install:
+   - pip install -U setuptools
+   - pip install -e .
+before_script:
+   - funyun_env coverage run -m funyun.cli
+   - export COVERAGE_PROCESS_START="${PWD}/.coveragerc"
+script:
+   - funyun_env -v start
+   - funyun_env stop
+after_success:
+   - coverage combine
+   - cp /tmp/.coverage .
+   - bash <(curl -s https://codecov.io/bash) -X gcov

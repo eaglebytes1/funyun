@@ -1,0 +1,125 @@
+{% if PLATFORM.endswith('BSD') %}
+#!/bin/sh
+# PROVIDE: {{NAME}}
+# rc file for {{NAME}} version {{VERSION}} in {{MODE}} mode.
+# Templated on node {{HOSTNAME}} on {{DATETIME}} by {{USER}}.
+
+. /etc/rc.subr
+
+name="{{NAME}}"
+rcvar="{{NAME}}_enable"
+start_cmd="{{NAME}}_start"
+stop_cmd="{{NAME}}_stop"
+
+load_rc_config $name
+
+rc_user="${{ '{' }}{{NAME}}_user}"
+command="${{ '{' }}{{NAME}}_root}/bin/{{NAME}}_env"
+pidfile="${{ '{' }}{{NAME}}_var}/run/supervisord.pid"
+required_files="${{ '{' }}{{NAME}}_root}/etc/supervisord.conf ${{ '{' }}{{NAME}}_root}/bin/{{NAME}}_run.py"
+required_dirs="${{ '{' }}{{NAME}}_data}"
+sig_reload="USR1"
+lrx_run=0
+
+{{NAME}}_start()
+{
+  rc_flags="${rc_flags} start"
+  lrx_run=1
+}
+
+{{NAME}}_stop()
+{
+ rc_flags="${rc_flags} stop"
+ lrx_run=1
+}
+
+run_rc_command "$1"
+if [ "$lrx_run" -eq 1 ]; then
+  /usr/local/bin/sudo -u ${{NAME}}_user -g ${{NAME}}_group $command $rc_flags
+fi
+{% endif %}
+{% if PLATFORM is equalto("linux") %}
+#!/bin/bash
+#
+# {{NAME}}		This shell script takes care of starting and stopping
+#		the {{NAME}} image recognition web server.
+#
+# chkconfig: - 58 74
+# description: {{NAME}} is an image recognition web server.
+#
+
+### BEGIN INIT INFO
+# Provides: {{NAME}}
+# Required-Start: $network $local_fs $remote_fs
+# Required-Stop: $network $local_fs $remote_fs
+# Should-Start: $syslog $named {{NAME}}
+# Should-Stop: $syslog $named
+# Short-Description: start and stop {{NAME}}
+# Description: {{NAME}} does image recognition and geolocation.
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check for prerequisites.
+[ "$EUID" != "0" ] && exit 4
+[ "$NETWORKING" = "no" ] && exit 1
+[ -x $command ] || exit 5
+[ -f /etc/sysconfig/{{NAME}} ] || exit 6
+
+# Get variables.
+. /etc/sysconfig/{{NAME}}
+prog={{NAME}}
+command="${{ '{' }}{{NAME}}_root}/bin/{{NAME}}_env"
+lockfile=/var/lock/subsys/{{NAME}}
+
+start() {
+	# Start daemon.
+	echo -n $"Starting $prog: "
+	sudo -u ${{NAME}}_user -g ${{NAME}}_group $command -v start
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch $lockfile
+}
+
+stop() {
+    echo -n $"Shutting down $prog: "
+    sudo -u ${{NAME}}_user -g ${{NAME}}_group $command stop
+	RETVAL=$?
+        echo
+	[ $RETVAL -eq 0 ] && rm -f $lockfile
+	return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+    sudo -u ${{NAME}}_user -g ${{NAME}}_group $command supervisorctl status
+	;;
+  restart|force-reload)
+	stop
+	start
+	;;
+  try-restart|condrestart)
+	if status $prog > /dev/null; then
+	    stop
+	    start
+	fi
+	;;
+  reload)
+	exit 3
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
+	exit 2
+esac
+{% endif %}

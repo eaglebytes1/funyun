@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to {{NAME}}!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to {{NAME}}!</h1>
+<p>The {{NAME}} version {{VERSION}} server was configured on this host at {{DATETIME}}.</p>
+
+
+
+<p>Here are the pre-defined public targets supplied by lorax:
+    <ul>
+    <li><a href="status">{{NAME}} status</a></li>
+    <li><a href="healthcheck">{{NAME}} healthcheck</a></li>
+    <li><a href="{{NAME}}/">Basic image recognition</a></li>
+    </ul>
+</p><br/>
+
+
+<p>The following targets require authentication:
+    <ul>
+    <li><a href="badtarget">Throw an intentional server error</a></li>
+    <li><a href="log.txt">Access/error log file</a></li>
+    <li><a href="environment">Environmental variables</a></li>
+    <li><a href="supervisord">Control processes (via supervisord)</a></li>
+    </ul>
+</p><br/>
+
+<p>For online documentation and support please refer to the
+    <a href="{{PROJECT_HOME}}">{{NAME}} home site</a>.<br/>
+   <em>Thank you for using {{NAME}}.</em></p>
+</body>
+</html>
