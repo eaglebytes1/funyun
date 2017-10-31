@@ -104,7 +104,7 @@ class BaseConfig(object):
     #           * configuration variables are printed
     #
     DEBUG = False
-    PORT = 58927
+    PORT = 8000
     HOST = 'localhost'
     #
     # Create a logfile.
@@ -152,17 +152,22 @@ class BaseConfig(object):
     NGINX_SERVER_NAME = 'localhost'
     system = platform.system()
     if system == 'Linux':
+        import distro
         NGINX_LISTEN_ARGS = 'deferred'
         NGINX_EVENTS = 'use epoll;'
+        DISTRIBUTION = distro.linux_distribution()[0].split()[0]
     elif system.endswith('BSD'): # pragma: no cover
         NGINX_LISTEN_ARGS = 'accept_filter=httpready'
         NGINX_EVENTS = 'use kqueue;'
+        DISTRIBUTION = None
     elif system == 'Darwin': # pragma: no cover
         NGINX_LISTEN_ARGS = ''
         NGINX_EVENTS = 'use kqueue;'
+        DISTRIBUTION = None
     else: # pragma: no cover
         NGINX_LISTEN_ARGS = ''
         NGINX_EVENTS = ''
+        DISTRIBUTION = None
     NGINX_UNIX_SOCKET = False
     #
     # gunicorn defs--these will not be used in debugging mode.
@@ -203,6 +208,15 @@ class BaseConfig(object):
     #
     STDERR_LOG_FORMAT = '%(levelname)s: %(message)s'
     FILE_LOG_FORMAT = '%(levelname)s: %(message)s'
+    #
+    # Dropzone defs.
+    #
+    DROPZONE_ALLOWED_FILE_TYPE = 'image'
+    DROPZONE_MAX_FILE_SIZE = 5
+    DROPZONE_INPUT_NAME = 'image'
+    DROPZONE_MAX_FILES = 1
+    DROPZONE_DEFAULT_MESSAGE = 'Drop images here or click here to upload'
+    DROPZONE_REDIRECT_VIEW = 'analyze'
 
 
 class DevelopmentConfig(BaseConfig):
@@ -285,6 +299,10 @@ def configure_app(app):
     #
     app.config['VERSION'] = __version__
     app.config['PLATFORM'] = platform.system()
+    #
+    # Set maximum upload size at 16 MB.
+    #
+    #app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     #
     # Supervisord socket type.
     #

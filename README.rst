@@ -40,7 +40,7 @@ convert that to street addresses, and `Flask`_ to serve up results.
     :alt: License terms
 
 .. |travis| image:: https://img.shields.io/travis/LegumeFederation/funyun.svg
-    :target:  https://travis-ci.org/EagleBytes/funyun
+    :target:  https://travis-ci.org/EagleBytes2017/funyun
     :alt: Travis CI
 
 .. |codacy| image:: https://api.codacy.com/project/badge/Grade/2ebc65ca90f74dc7a9238c202f327981

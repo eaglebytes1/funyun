@@ -5,4 +5,5 @@ recursive-include funyun/etc *
 recursive-include funyun/static *
 recursive-include funyun/templates *
 recursive-include funyun/test *
+recursive-include funyun/user_conf *
 recursive-include funyun/var *

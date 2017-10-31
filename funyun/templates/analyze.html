@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Funyun Analysis Results</title>
+</head>
+<body>
+   <h1>EagleBytes Funyun Results</h1>
+   <table style=""width:100%">
+   <tr>
+     <td>
+         <img src="/funyun/lastimage" width="300px">
+     </td>
+     <td>
+         {% if celebrity %}
+            {% if celebrity.localURL %}
+               <img src="{{celebrity.localURL}}" width="300px">
+            {% else %}
+               <a href="{{celebrity.imageurl}}">Link to Images</a>
+            {% endif %}
+         {% else %}
+            No matching celebrity found.
+         {% endif %}
+     </td>
+   </tr>
+   <tr>
+     <td>
+         {% if face %}
+            {%if face.age  %}
+               Age: {{face.age.low}} to {{face.age.high}} years old <br>
+            {% endif %}
+            {% if face.emotions %}
+               <ul>
+                   {% for item in face.emotions %}
+                    <li>
+                    {{item}} ({{face.emotions[item]|round|int}}%)
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+         {% endif %}
+     </td>
+     <td>
+         {% if celebrity %}
+         {{celebrity.confidence|round|int}}% match to
+            <a href="{{celebrity.url}}"> {{celebrity.name}}</a><br>
+         {% if celebrity.desc %}
+            {{celebrity.desc}}
+         {% endif %}
+         {% endif %}
+     </td>
+   </tr>
+   </table>
+</body>
+</html>

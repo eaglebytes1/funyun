@@ -7,16 +7,20 @@
 -e git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0
 blinker==1.4              # via raven
 boto3==1.4.7
-botocore==1.7.35          # via boto3, s3transfer
+botocore==1.7.36          # via boto3, s3transfer
+certifi==2017.7.27.1      # via requests
+chardet==3.0.4            # via requests
 click==6.7
 coverage==4.4.1
 docutils==0.14            # via botocore
 flask-cli==0.4.0
-flask==0.12.2             # via flask-cli, raven
+flask-dropzone==1.4.1
+flask==0.12.2             # via flask-cli, flask-dropzone, raven
 geopy==1.11.0
 gunicorn==19.7.1
 healthcheck==1.3.2
 htpasswd==2.3
+idna==2.6                 # via requests
 itsdangerous==0.24        # via flask
 jinja2==2.9.6             # via flask
 jmespath==0.9.3           # via boto3, botocore
@@ -25,9 +29,11 @@ meld3==1.0.2
 orderedmultidict==0.7.11  # via htpasswd
 piexif==1.0.13
 python-dateutil==2.6.1    # via botocore
-raven[flask]==6.2.1
+raven[flask]==6.3.0
+requests==2.18.4
 s3transfer==0.1.11        # via boto3
 six==1.11.0               # via orderedmultidict, python-dateutil
 superlance==1.0.0
 supervisor-wildcards==0.1.3
+urllib3==1.22             # via requests
 werkzeug==0.12.2          # via flask

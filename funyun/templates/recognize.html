@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Funyun Image Recognition Demo</title>
+  {{ dropzone.load(version='5.2.0') }}
+  {{ dropzone.style('border: 2px dashed #0087F7; margin: 0; height: 270px; width:270px;') }}
+</head>
+<body>
+   <h1>EagleBytes Funyun Image Analysis v{{version}}</h1>
+   <table style=""width:100%">
+   <tr>
+     <td>
+         {{ dropzone.create(action_view='recognize') }}
+     </td>
+     <td>
+
+     </td>
+     <td>
+     </td>
+   </tr>
+   <tr>
+     <td>
+         <img src="/static/celebrity_1.jpg" width="270px">
+     </td>
+     <td>
+         <img src="/static/celebrity_2.jpg" width="270px">
+     </td>
+     <td>
+         <img src="/static/celebrity_3.jpg" width="270px">
+     </td>
+   </tr>
+   </table>
+</body>
+</html>

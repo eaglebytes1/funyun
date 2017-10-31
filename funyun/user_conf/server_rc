@@ -1,0 +1,17 @@
+#!/bin/bash
+# This file sets values of the following variables that must be set
+# before the test script is run.
+#
+#      {{NAME.upper()}}_PORT       Port number.
+#      {{NAME.upper()}}_HOST       Host IP.
+#      {{NAME.upper()}}_URL        URL string including transport.
+#      {{NAME.upper()}}_CURL_ARGS  Arguments for curl (if using unix sockets).
+#      {{NAME.upper()}}_CURL_URL   URL string for curl.
+#      {{NAME.upper()}}_SECRET_KEY Password for some operations.
+#
+export {{NAME.upper()}}_PORT="{{PORT}}"
+export {{NAME.upper()}}_HOST="{{HOST}}"
+export {{NAME.upper()}}_CURL_ARGS="{{CURL_ARGS}}"
+export {{NAME.upper()}}_URL="{{URL}}"
+export {{NAME.upper()}}_CURL_URL="{{CURL_URL}}"
+export {{NAME.upper()}}_SECRET_KEY="{{SECRET_KEY}}"

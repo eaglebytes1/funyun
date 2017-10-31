@@ -27,7 +27,7 @@ import htpasswd
 #
 # Local imports.
 #
-from .logger import configure_logging
+from .logs import configure_logging
 from .filesystem import init_filesystem
 from .config_file import create_config_file, write_kv_to_config_file
 from .config import print_config_var
@@ -53,7 +53,7 @@ def cli():
 @cli.command()
 def run(): # pragma: no cover
     """Run a server directly."""
-    from .logging import configure_logging
+    from .logs import configure_logging
     print('Direct start, use of gunicorn is recommended for production.', file=sys.stderr)
     port = current_app.config['PORT']
     host = current_app.config['HOST']
@@ -318,11 +318,13 @@ def set_htpasswd(force):
               default=False)
 def create_test_files(force, configonly):
     """Create test files."""
+    copy_files('user_conf',
+               Path(
+                   os.path.expanduser(current_app.config['USER_CONFIG_PATH'])),
+               force)
     if not configonly:
         copy_files('test',
                    Path('.'),
                    force,
-                   notemplate_exts=['hmm', 'faa', 'sh'])
-    copy_files('user_conf',
-               Path(os.path.expanduser(current_app.config['USER_CONFIG_PATH'])),
-               force)
+                   notemplate_exts=['png', 'jpg', 'sh'])
+

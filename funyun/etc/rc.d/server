@@ -38,7 +38,10 @@ if [ "$lrx_run" -eq 1 ]; then
   /usr/local/bin/sudo -u ${{NAME}}_user -g ${{NAME}}_group $command $rc_flags
 fi
 {% endif %}
-{% if PLATFORM is equalto("linux") %}
+{% if PLATFORM is equalto("Linux") %}
+{% if DISTRIBUTION is equalto("Gentoo") %}
+{% endif %}
+{% if DISTRIBUTION is equalto("Amazon") %}
 #!/bin/bash
 #
 # {{NAME}}		This shell script takes care of starting and stopping
@@ -122,4 +125,5 @@ case "$1" in
 	echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
 	exit 2
 esac
+{% endif %}
 {% endif %}

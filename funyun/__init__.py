@@ -18,6 +18,7 @@ from pathlib import Path  # python 3.4
 #
 from flask import Flask, Response, request, abort
 from flask_cli import FlaskCLI
+from flask_dropzone import Dropzone
 from healthcheck import HealthCheck, EnvironmentDump
 import coverage
 #
@@ -50,6 +51,7 @@ app = Flask(__name__,
                                     '_ROOT', prefix),
             template_folder='templates')
 FlaskCLI(app)
+Dropzone(app)
 configure_app(app)
 #
 # Application data for optional environment dump.
@@ -114,3 +116,5 @@ def return_log():
 @app.route('/test_exception')
 def test_exception(): # pragma: no cover
     raise RuntimeError('Intentional error from /test_exception')
+
+from .core import *

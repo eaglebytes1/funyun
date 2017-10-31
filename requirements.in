@@ -1,14 +1,16 @@
 # requirements.in
 boto3
 click
-piexif
-geopy
+coverage
 flask-cli
+flask-dropzone
+geopy
 gunicorn
-raven[flask]
--e git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0
-superlance
 healthcheck
 htpasswd
-coverage
+piexif
+raven[flask]
+requests
+superlance
+-e git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0
 supervisor-wildcards
