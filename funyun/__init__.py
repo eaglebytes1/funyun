@@ -4,19 +4,13 @@
 #
 # standard library imports
 #
-import io
-import json
 import os
-import shutil
-import subprocess
-from collections import OrderedDict  # python 3.1
-from datetime import datetime
 from sys import prefix
 from pathlib import Path  # python 3.4
 #
 # third-party imports
 #
-from flask import Flask, Response, request, abort
+from flask import Flask, Response, send_from_directory
 from flask_cli import FlaskCLI
 from flask_dropzone import Dropzone
 from healthcheck import HealthCheck, EnvironmentDump
@@ -37,6 +31,7 @@ RUN_LOG_NAME = 'run_log.txt'
 # MIME types.
 JSON_MIMETYPE = 'application/json'
 TEXT_MIMETYPE = 'text/plain'
+ICON_MIMETYPE = 'image/vnd.microsoft.icon'
 #
 # Application data.
 #
@@ -116,5 +111,12 @@ def return_log():
 @app.route('/test_exception')
 def test_exception(): # pragma: no cover
     raise RuntimeError('Intentional error from /test_exception')
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico',
+                               mimetype=ICON_MIMETYPE)
 
 from .core import *
