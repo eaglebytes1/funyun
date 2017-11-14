@@ -11,10 +11,30 @@ install:
 before_script:
    - funyun_env coverage run -m funyun.cli
    - export COVERAGE_PROCESS_START="${PWD}/.coveragerc"
+   - funyun_env funyun config secret_key
+   - funyun_env funyun config secret_key blahblahblah
+   - funyun_env funyun config
+   - funyun_env funyun create_instance
+   - funyun_env funyun set_htpasswd
+   - funyun_env funyun create_test_files
 script:
    - funyun_env -v start
+   - cat ${root_dir}/var/log/funyun_server.log
+   - ./test_targets.sh
    - funyun_env stop
 after_success:
+   - funyun_env funyun test_logging
+   - funyun_env funyun config blah Bob_LobLaw
+   - funyun_env funyun config --vartype=list mylist "[1,2,3]"
+   - funyun_env funyun config var /tmp/funyunvar
+   - export FUNYUN_SUPERVISORD_START_SERVER=True
+   - funyun_env funyun config supervisord_start_nginx False
+   - export FUNYUN_SUPERVISORD_START_SERVER=False
+   - funyun_env funyun config gunicorn_unix_socket False
+   - funyun_env funyun config nginx_unix_socket True
+   - funyun_env funyun create_instance --force
+   - funyun_env funyun set_htpasswd --force
+   - funyun_env funyun config --delete
    - coverage combine
    - cp /tmp/.coverage .
    - bash <(curl -s https://codecov.io/bash) -X gcov

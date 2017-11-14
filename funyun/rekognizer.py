@@ -126,7 +126,7 @@ class Rekognize(object):
         label_list = response['Labels']
         if verbose:
             print('   %d features recognized in image:' % len(label_list))
-        for label_num, label in enumerate(label_list):
+        for label in label_list:
             name = label['Name']
             confidence = label['Confidence']
             self.labels[name] = confidence
@@ -160,9 +160,11 @@ class Rekognize(object):
                                              self.labels[label]))
 
 
-    def detect_faces(self, img, attributes=['ALL'], verbose=False):
+    def detect_faces(self, img, attributes=None, verbose=False):
         if verbose:
             print('Analyzing faces...')
+        if attributes is None:
+            attributes = ['ALL']
         self.faces = []
         response = self.client.detect_faces(Image={'Bytes': img},
                                             Attributes=attributes)
