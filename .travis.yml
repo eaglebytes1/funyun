@@ -2,6 +2,10 @@ sudo: false
 language: python
 python:
    - "3.5"
+addons:
+  apt:
+    packages:
+    - nginx
 before_install:
    - export root_dir="$(python -c 'import sys;print(sys.prefix)')"
 install:
