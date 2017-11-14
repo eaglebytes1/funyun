@@ -33,7 +33,7 @@ done
 #
 # Get environmental variables.
 #
-source ~/.lorax/lorax_rc
+source ~/.funyun/funyun_rc
 #
 # Parse arguments.
 #

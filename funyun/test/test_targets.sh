@@ -2,7 +2,7 @@
 DOC="""Test all funyun targets.
 
 Usage:
-       funyun_test.sh [-v]
+       test_targets.sh [-v]
 
 Options:
        -v  verbose mode, shows all returns.
@@ -117,7 +117,7 @@ test_GET /funyun/time_as_JSON
 # Post text data.
 ./post_text.sh ${verbose_flag} "This is some text" pass_data
 # Post images.
-./post_image.sh ${verbose_flag}  taylorswiftups.png recognize_as_text
+#./post_image.sh ${verbose_flag}  taylorswiftups.png recognize_as_text
 
 #
 # Passworded targets.
