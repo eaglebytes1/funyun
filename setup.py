@@ -16,13 +16,11 @@
 from distutils.cmd import Command
 import distutils.log as logger
 from os import environ as environ
-import platform
 import shutil
 import string
-import subprocess # noqa
 import sys
 from setuptools import setup, find_packages
-from setuptools.command import build_py, develop, install
+from setuptools.command import develop, install
 # Version restrictions and dependencies
 if sys.version_info < (3, 4, 0, 'final', 0):
     raise SystemExit("This package requires python 3.4 or higher.")

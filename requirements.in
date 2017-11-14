@@ -2,6 +2,7 @@
 boto3
 click
 coverage
+distro
 flask-cli
 flask-dropzone
 geopy

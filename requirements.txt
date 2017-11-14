@@ -12,6 +12,7 @@ certifi==2017.11.5        # via requests
 chardet==3.0.4            # via requests
 click==6.7
 coverage==4.4.2
+distro==1.0.4
 docutils==0.14            # via botocore
 flask-cli==0.4.0
 flask-dropzone==1.4.1

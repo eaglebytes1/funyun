@@ -77,10 +77,10 @@ class Rekognize(object):
 
 
     class Celebrity(object):
-        def __init__(self, name, id, confidence, urls):
+        def __init__(self, name, ident, confidence, urls):
             self.name = name
             self.urls = urls
-            self.id = id
+            self.id = ident
             self.confidence = confidence
 
 
@@ -142,10 +142,10 @@ class Rekognize(object):
         for celebrity in celebrities:
             name = celebrity['Name']
             urls = celebrity['Urls']
-            id = celebrity['Id']
+            ident = celebrity['Id']
             confidence = celebrity['MatchConfidence']
             self.celebrities.append(self.Celebrity(name,
-                                                   id,
+                                                   ident,
                                                    confidence,
                                                    urls ))
         if verbose:
