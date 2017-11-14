@@ -6,6 +6,7 @@ before_install:
    - export root_dir="$(python -c 'import sys;print(sys.prefix)')"
 install:
    - pip install -U setuptools
+   - pip install -e 'git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0'
    - pip install -e .
 before_script:
    - funyun_env coverage run -m funyun.cli
