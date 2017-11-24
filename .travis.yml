@@ -7,7 +7,19 @@ addons:
     packages:
     - nginx
 before_install:
+   - curl -L -o funyun_tool https://raw.githubusercontent.com/EagleBytes2017/funyun/master/build_scripts/funyun_tool.sh
+   - chmod 755 funyun_tool
+   - ./funyun_tool create_scripts
+   - ./funyun_tool init
    - export root_dir="$(python -c 'import sys;print(sys.prefix)')"
+   - ./funyun_tool config root_dir $root_dir
+   - ./funyun_tool config var_dir ${root_dir}/var
+   - ./funyun_tool config tmp_dir ${root_dir}/var/tmp
+   - ./funyun_tool config log_dir ${root_dir}/var/log
+   - ./funyun_tool config python system
+   - ./lorax_tool config all
+   - ./lorax_tool make_dirs
+   - ./lorax_tool install
 install:
    - pip install -U setuptools
    - pip install -e 'git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0'
