@@ -111,6 +111,7 @@ def recognize_as_text():
     else:
         abort(404)
 
+
 @app.route('/funyun/recognize', methods=['POST', 'GET'])
 def recognize():
     global NAME, IMAGE
@@ -173,9 +174,6 @@ def analyze():
         if celeb.id  == '4y3xB8v':
             templateData['celebrity']['desc'] = 'Popular Romanian singer'
             templateData['celebrity']['localURL'] = '/static/Carmen_Serban.jpg'
-        elif celeb.id == '668PR':
-            templateData['celebrity']['desc'] = 'Czech actress'
-            templateData['celebrity']['localURL'] = '/static/Barbora_Hrzanova.jpg'
         elif celeb.id == '26o9uJ':
             templateData['celebrity']['desc'] = 'TV mom (Wizards of Waverly Place)'
             templateData['celebrity']['localURL'] = '/static/Maria_Canals-Barrera.jpg'
