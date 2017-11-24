@@ -21,8 +21,12 @@ before_script:
    - funyun_env funyun create_instance
    - funyun_env funyun set_htpasswd
    - funyun_env funyun create_test_files
+   - nginx -V
 script:
    - funyun_env -v start
+   - export log_dir=$(funyun_env funyun config log)
+   - ls ${log_dir}
+   - cat ${log_dir}/nginx/error.log
    - ./test_targets.sh
    - funyun_env stop
 after_success:

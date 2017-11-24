@@ -1,4 +1,5 @@
 # requirements.in
+arrow
 boto3
 click
 coverage
