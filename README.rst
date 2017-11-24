@@ -31,7 +31,7 @@ convert that to street addresses, and `Flask`_ to serve up results.
     :target: https://pypi.python.org/pypi/funyun
     :alt: Python package
 
-.. |repo| image:: https://img.shields.io/github/commits-since/EagleBytes2017/funyun/0.01.svg
+.. |repo| image:: https://img.shields.io/github/commits-since/EagleBytes2017/funyun/0.23.svg
     :target: https://github.com/EagleBytes2017/funyun
     :alt: GitHub repository
 
@@ -44,7 +44,7 @@ convert that to street addresses, and `Flask`_ to serve up results.
     :alt: Travis CI
 
 .. |codacy| image:: https://api.codacy.com/project/badge/Grade/2ebc65ca90f74dc7a9238c202f327981
-    :target: https://www.codacy.com/app/joelb123/funyun?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=EagleBytes2012/funyun&amp;utm_campaign=Badge_Grade
+    :target: https://www.codacy.com/app/joelb123/funyun?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=EagleBytes2017/funyun&amp;utm_campaign=Badge_Grade
     :alt: Codacy.io grade
 
 .. |coverage| image:: https://codecov.io/gh/EagleBytes2017/funyun/branch/master/graph/badge.svg

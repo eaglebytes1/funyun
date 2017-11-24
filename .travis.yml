@@ -23,7 +23,7 @@ before_script:
    - funyun_env funyun create_test_files
 script:
    - funyun_env -v start
-   - cat ${root_dir}/var/log/funyun_server.log
+   - cat ${root_dir}/var/log/nginx/error.log
    - ./test_targets.sh
    - funyun_env stop
 after_success:
