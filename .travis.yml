@@ -2,10 +2,6 @@ sudo: false
 language: python
 python:
    - "3.5"
-addons:
-  apt:
-    packages:
-    - nginx
 before_install:
    - curl -L -o funyun_tool https://raw.githubusercontent.com/EagleBytes2017/funyun/master/build_scripts/funyun_tool.sh
    - chmod 755 funyun_tool
@@ -17,9 +13,9 @@ before_install:
    - ./funyun_tool config tmp_dir ${root_dir}/var/tmp
    - ./funyun_tool config log_dir ${root_dir}/var/log
    - ./funyun_tool config python system
-   - ./lorax_tool config all
-   - ./lorax_tool make_dirs
-   - ./lorax_tool install
+   - ./funyun_tool config all
+   - ./funyun_tool make_dirs
+   - ./funyun_tool install
 install:
    - pip install -U setuptools
    - pip install -e 'git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0'
