@@ -25,7 +25,7 @@ before_script:
 script:
    - funyun_env -v start
    - export log_dir=$(funyun_env funyun config log)
-   - ls ${log_dir}
+   - ls ${log_dir}/nginx
    - cat ${log_dir}/nginx/error.log
    - ./test_targets.sh
    - funyun_env stop
