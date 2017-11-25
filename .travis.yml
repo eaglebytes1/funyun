@@ -3,8 +3,8 @@ language: python
 python:
    - "3.5"
 before_install:
-   - curl -L -o funyun_tool https://raw.githubusercontent.com/EagleBytes2017/funyun/master/build_scripts/funyun_tool.sh
-   - chmod 755 funyun_tool
+   - ls
+   - ln -s build_scripts/funyun_tool.sh
    - ./funyun_tool create_scripts
    - ./funyun_tool init
    - export root_dir="$(python -c 'import sys;print(sys.prefix)')"
