@@ -56,9 +56,10 @@ dist
 ################
 docs/_build/
 
-# build directory#
-##################
+# directories #
+###############
 build/
+env/
 
 # version #
 ###########
