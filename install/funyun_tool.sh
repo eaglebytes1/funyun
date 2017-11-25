@@ -6,6 +6,7 @@ pkg="${script_name%_tool}"
 PKG="$(echo ${pkg} | tr /a-z/ /A-Z/)"
 PKG_BUILD_DIR="${PKG}_BUILD_DIR"
 PKG_TEST_DIR="${PKG}_TEST_DIR"
+PKG_BUILD_FROM_GIT="${PKG}_BUILD_FROM_GIT"
 if [ -z "${!PKG_BUILD_DIR}" ]; then
    build_dir=~/.${pkg}/build
 else
@@ -703,30 +704,35 @@ update() {
    #
    # Updates self.
    #
-   rawsite="https://raw.githubusercontent.com/LegumeFederation/${pkg}/master/build_scripts"
-   printf "Checking for self-update..."
-   curl -L -s -o ${pkg}_tool.new ${rawsite}/${pkg}_tool.sh
-   chmod 755 ${pkg}_tool.new
-   if cmp -s ${pkg}_tool ${pkg}_tool.new ; then
-      rm ${pkg}_tool.new
-      >&1 echo "not needed." >&1
-   else
-      mv ${pkg}_tool.new ${pkg}_tool
-            >&2 echo "This script was updated. Please re-build ${pkg} using"
-      if [ -e my_build.sh ] ; then
-         >&2 echo "   ./${script_name} create_scripts"
-         >&2 echo "and"
-      fi
-      >&2 echo "    ./${script_name} build"
+   if [ -z "${!PKG_BUILD_FROM_GIT}" ]; then
+      git pull
+      newversion="$(pypi)"
+    else
+       rawsite="https://raw.githubusercontent.com/LegumeFederation/${pkg}/master/build_scripts"
+       printf "Checking for self-update..."
+       curl -L -s -o ${pkg}_tool.new ${rawsite}/${pkg}_tool.sh
+       chmod 755 ${pkg}_tool.new
+       if cmp -s ${pkg}_tool ${pkg}_tool.new ; then
+          rm ${pkg}_tool.new
+          >&1 echo "not needed." >&1
+       else
+          mv ${pkg}_tool.new ${pkg}_tool
+                >&2 echo "This script was updated. Please re-build ${pkg} using"
+          if [ -e my_build.sh ] ; then
+             >&2 echo "   ./${script_name} create_scripts"
+             >&2 echo "and"
+          fi
+          >&2 echo "    ./${script_name} build"
+       fi
+       newversion=$(awk -F"'" '/^version/ {print $2 }' ${build_root_dir}/funyun/version)
    fi
-   pypi="$(pypi)"
    version="$(version)"
    if [ "${version}" == "${pkg} build not configured" ]; then
       >&1 echo "Next run \"./${script_name} build\" to build and configure ${pkg}."
-   elif [ "$pypi" == "$version" ]; then
+   elif [ "$newversion" == "$version" ]; then
       >&1 echo "The latest version of ${pkg} (${pypi}) is installed, no need for updates."
    else
-      >&1 echo "You can update from installed version (${version}) to latest (${pypi}) with"
+      >&1 echo "You can update from installed version (${version}) to latest (${newversion}) with"
       >&1 echo "   ./${script_name} pip_install"
    fi
 }

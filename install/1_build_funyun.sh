@@ -9,10 +9,10 @@ if [ -z "$FUNYUN_BUILD_DIR" ]; then
 fi
 mkdir -p $FUNYUN_BUILD_DIR
 cd $FUNYUN_BUILD_DIR
-ln -s ../install/funyun_tool.sh funyun_tool
+ln -s ${FNY_ROOT}/../install/funyun_tool.sh funyun_tool
 chmod 755 funyun_tool
 ln -s ${FNY_SCRIPT_DIR}/my_build.sh .
-ln -s ${FNY_SCRIPT_DIR}/${FNY_STAGE}_config.sh ./my_config.sh
+ln -s ${FNY_SCRIPT_DIR}/my_config.sh .
 ./funyun_tool build -y
 ./funyun_tool configure_pkg -y
 ./funyun_tool testify -y
