@@ -603,8 +603,10 @@ pip_install() {
    pip install -U packaging  # Ditto on proxy
    pip install -e 'git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0'
    if [ -z ${!PKG_GIT_DIR} ]; then
-     cd ${!PKG_GIT_DIR}
+     echo "Installing from git ${!PKG_GIT_DIR}"
+     pushd ${!PKG_GIT_DIR}
      pip install .
+     popd
    else
       pip install -U ${pkg}
    fi
