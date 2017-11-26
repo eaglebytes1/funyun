@@ -6,7 +6,7 @@ pkg="${script_name%_tool}"
 PKG="$(echo ${pkg} | tr /a-z/ /A-Z/)"
 PKG_BUILD_DIR="${PKG}_BUILD_DIR"
 PKG_TEST_DIR="${PKG}_TEST_DIR"
-PKG_GIT_DIR="${PKG}_BUILD_FROM_GIT"
+PKG_GIT_DIR="${PKG}_GIT_DIR"
 if [ -z "${!PKG_BUILD_DIR}" ]; then
    build_dir=~/.${pkg}/build
 else
