@@ -602,10 +602,11 @@ pip_install() {
    pip install -U setuptools-scm # This one is needed to work behind proxy
    pip install -U packaging  # Ditto on proxy
    pip install -e 'git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0'
-   if [ -z ${!PKG_GIT_DIR} ]; then
+   if [ -z "${!PKG_GIT_DIR}" ]; then
      echo "Installing from git ${!PKG_GIT_DIR}"
      pushd ${!PKG_GIT_DIR}
-     pip install .
+     pip install -r requirements.txt
+     pip develop .
      popd
    else
       pip install -U ${pkg}
@@ -711,7 +712,7 @@ update() {
    #
    # Updates self.
    #
-   if [ -z "${!PKG_BUILD_FROM_GIT}" ]; then
+   if [ -z "${!PKG_GIT_DIR}" ]; then
       git pull
       newversion="$(pypi)"
     else
