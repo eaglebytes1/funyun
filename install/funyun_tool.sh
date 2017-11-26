@@ -6,7 +6,7 @@ pkg="${script_name%_tool}"
 PKG="$(echo ${pkg} | tr /a-z/ /A-Z/)"
 PKG_BUILD_DIR="${PKG}_BUILD_DIR"
 PKG_TEST_DIR="${PKG}_TEST_DIR"
-PKG_BUILD_FROM_GIT="${PKG}_BUILD_FROM_GIT"
+PKG_GIT_DIR="${PKG}_BUILD_FROM_GIT"
 if [ -z "${!PKG_BUILD_DIR}" ]; then
    build_dir=~/.${pkg}/build
 else
@@ -393,7 +393,7 @@ cat <<'EOF'
 # Values shown are not defaults, but rather example values.
 #
 #version="0.94"
-#${root}/bin/${pkg}_env ${pkg} config user_config_path ~/.funyun-dev
+#${root}/bin/${pkg}_env ${pkg} config user_config_path ~/.funyun
 #${root}/bin/${pkg}_env ${pkg} config secret_key mysecret
 #${root}/bin/${pkg}_env ${pkg} config data /usr/local/www/data/${pkg}/${version}
 #${root}/bin/${pkg}_env ${pkg} config userdata /persist/${pkg}/${version}
@@ -584,7 +584,7 @@ link_python() {
       >&1 echo "creating python ${python_version} link in ${root_bin}."
       ln -s python${python_version%.*} python
    fi
-   if [ ! -e pip_install ]; then
+   if [ ! -e pip ]; then
       >&1 echo "creating pip link in ${root_bin}."
       ln -s pip${python_version%%.*} pip
    fi
@@ -602,7 +602,12 @@ pip_install() {
    pip install -U setuptools-scm # This one is needed to work behind proxy
    pip install -U packaging  # Ditto on proxy
    pip install -e 'git+https://github.com/LegumeFederation/supervisor.git@4.0.0#egg=supervisor==4.0.0'
-   pip install -U ${pkg}
+   if [ -z ${!PKG_GIT_DIR} ]; then
+     cd ${!PKG_GIT_DIR}
+     pip install .
+   else
+      pip install -U ${pkg}
+   fi
    pkg_env_path="${root}/bin/${pkg}_env"
    pkg_version="$(${pkg_env_path} ${pkg} config version)"
    set_value version $pkg_version

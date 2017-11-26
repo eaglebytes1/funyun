@@ -2,7 +2,7 @@
 #
 # These defs are for use on a development instance.
 #
-${root}/bin/funyun_env funyun config user_config_path ~/.funyun-dev
+${root}/bin/funyun_env funyun config user_config_path ~/.funyun
 ${root}/bin/funyun_env funyun config secret_key $FNY_SECRET_KEY
 ${root}/bin/funyun_env funyun config rc_verbose True
 ${root}/bin/funyun_env funyun config host $FNY_IP

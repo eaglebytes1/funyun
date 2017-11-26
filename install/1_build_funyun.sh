@@ -7,6 +7,8 @@ if [ -z "$FUNYUN_BUILD_DIR" ]; then
    echo "You must source the defs script first."
    exit 1
 fi
+virtualenv -p python3 $FNY_ROOT
+source ${FNY_ROOT}/bin/activate
 mkdir -p $FUNYUN_BUILD_DIR
 cd $FUNYUN_BUILD_DIR
 ln -s ${FNY_ROOT}/../install/funyun_tool.sh funyun_tool
