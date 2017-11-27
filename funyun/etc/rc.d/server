@@ -19,22 +19,22 @@ pidfile="${{ '{' }}{{NAME}}_var}/run/supervisord.pid"
 required_files="${{ '{' }}{{NAME}}_root}/etc/supervisord.conf ${{ '{' }}{{NAME}}_root}/bin/{{NAME}}_run.py"
 required_dirs="${{ '{' }}{{NAME}}_data}"
 sig_reload="USR1"
-lrx_run=0
+fny_run=0
 
 {{NAME}}_start()
 {
   rc_flags="${rc_flags} start"
-  lrx_run=1
+  fny_run=1
 }
 
 {{NAME}}_stop()
 {
  rc_flags="${rc_flags} stop"
- lrx_run=1
+ fny_run=1
 }
 
 run_rc_command "$1"
-if [ "$lrx_run" -eq 1 ]; then
+if [ "$fny_run" -eq 1 ]; then
   /usr/local/bin/sudo -u ${{NAME}}_user -g ${{NAME}}_group $command $rc_flags
 fi
 {% endif %}
@@ -78,16 +78,14 @@ lockfile=/var/lock/subsys/{{NAME}}
 
 start() {
 	# Start daemon.
-	echo -n $"Starting $prog: "
-	sudo -u ${{NAME}}_user -g ${{NAME}}_group $command -v start
+	sudo -u ${{NAME}}_user -g ${{NAME}}_group $command ${{NAME}}_flags start
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch $lockfile
 }
 
 stop() {
-    echo -n $"Shutting down $prog: "
-    sudo -u ${{NAME}}_user -g ${{NAME}}_group $command stop
+    sudo -u ${{NAME}}_user -g ${{NAME}}_group $command ${{NAME}}_flags stop
 	RETVAL=$?
         echo
 	[ $RETVAL -eq 0 ] && rm -f $lockfile
@@ -109,17 +107,8 @@ case "$1" in
 	stop
 	start
 	;;
-  try-restart|condrestart)
-	if status $prog > /dev/null; then
-	    stop
-	    start
-	fi
-	;;
-  reload)
-	exit 3
-	;;
   *)
-	echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
+	echo $"Usage: $0 {start|stop|status|restart|force-reload}"
 	exit 2
 esac
 {% endif %}
