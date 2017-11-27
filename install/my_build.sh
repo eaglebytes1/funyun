@@ -5,3 +5,7 @@
 ./funyun_tool config log_dir ${FNY_LOG}
 ./funyun_tool config python system
 ./funyun_tool config nginx system
+./funyun_tool config prometheus system
+./funyun_tool config alertmanager system
+./funyun_tool config nodeexporter system
+./funyun_tool config pushgateway system

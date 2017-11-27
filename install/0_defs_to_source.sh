@@ -32,7 +32,7 @@ done
 #      FUNYUN-* : Used in funyun_tool
 #
 export FNY_VERSION="0.24"
-export FNY_ROOT=~/funyun/env
+export FNY_ROOT=~/funyun/funyunenv
 export FNY_HOSTNAME="eaglebytes.org"
 export FNY_IP="172.31.24.184"
 export FNY_SCRIPT_DIR=$PWD

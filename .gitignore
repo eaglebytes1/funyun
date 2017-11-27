@@ -59,16 +59,16 @@ docs/_build/
 # directories #
 ###############
 build/
-env/
 
 # version #
 ###########
 funyun/version.py
 
-# test byproducts#
-########################
-funyun/test/data
-lorax/test/var
+# files for secrets #
+#####################
+crashmail_email.txt
+secret_key.txt
+sentry_dsn.txt
 
 # docutils #
 ############
