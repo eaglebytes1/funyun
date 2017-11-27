@@ -8,3 +8,4 @@ ${root}/bin/funyun_env funyun config rc_verbose True
 ${root}/bin/funyun_env funyun config host $FNY_IP
 ${root}/bin/funyun_env funyun config nginx_server_name $FNY_HOSTNAME
 ${root}/bin/funyun_env funyun config supervisord_start_nginx False
+${root}/bin/funyun_env funyun config sentry_dsn $FNY_SENTRY_DSN
