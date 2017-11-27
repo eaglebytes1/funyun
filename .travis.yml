@@ -12,6 +12,10 @@ before_install:
    - ./funyun_tool config tmp_dir ${root_dir}/var/tmp
    - ./funyun_tool config log_dir ${root_dir}/var/log
    - ./funyun_tool config python system
+   - ./funyun_tool config prometheus system
+   - ./funyun_tool config alertmanager system
+   - ./funyun_tool config node_exporter system
+   - ./funyun_tool config pushgateway system
    - ./funyun_tool config all
    - ./funyun_tool make_dirs
    - ./funyun_tool install

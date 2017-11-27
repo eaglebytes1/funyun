@@ -605,10 +605,10 @@ pip_install() {
    if [ -z "${!PKG_GIT_DIR}" ]; then
      pip install -U ${pkg}
    else
-     echo "Installing from git ${!PKG_GIT_DIR}"
+     echo "Installing from git directory \"${!PKG_GIT_DIR}\""
      pushd ${!PKG_GIT_DIR}
      pip install -r requirements.txt
-     pip develop .
+     pip install -e .
      popd
    fi
    pkg_env_path="${root}/bin/${pkg}_env"

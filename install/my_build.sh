@@ -7,5 +7,5 @@
 ./funyun_tool config nginx system
 ./funyun_tool config prometheus system
 ./funyun_tool config alertmanager system
-./funyun_tool config nodeexporter system
+./funyun_tool config node_exporter system
 ./funyun_tool config pushgateway system
