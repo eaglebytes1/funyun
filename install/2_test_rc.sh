@@ -18,4 +18,8 @@ echo "enabling service.."
 sudo chkconfig --add funyun
 echo "starting service..."
 sudo service funyun start
+echo "restarting service..."
+sudo service funyun restart
+echo "stopping service..."
+sudo service funyun stop
 trap - EXIT
