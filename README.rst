@@ -39,7 +39,7 @@ convert that to street addresses, and `Flask`_ to serve up results.
     :target: https://github.com/EagleBytes2017/funyun/blob/master/LICENSE.txt
     :alt: License terms
 
-.. |travis| image:: https://img.shields.io/travis/LegumeFederation/funyun.svg
+.. |travis| image:: https://img.shields.io/travis/EagleBytes2017/funyun.svg
     :target:  https://travis-ci.org/EagleBytes2017/funyun
     :alt: Travis CI
 
@@ -48,7 +48,7 @@ convert that to street addresses, and `Flask`_ to serve up results.
     :alt: Codacy.io grade
 
 .. |coverage| image:: https://codecov.io/gh/EagleBytes2017/funyun/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/EagleBytes2012/funyun
+    :target: https://codecov.io/gh/EagleBytes2017/funyun
     :alt: Codecov.io test coverage
 
 .. |issues| image:: https://img.shields.io/github/issues/EagleBytes2017/funyun.svg
