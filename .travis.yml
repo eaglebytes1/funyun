@@ -1,7 +1,7 @@
 sudo: false
 language: python
 python:
-   - "3.5"
+   - "3.6"
 before_install:
    - ln -s install/funyun_tool.sh ./funyun_tool
    - ./funyun_tool create_scripts
