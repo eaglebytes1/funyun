@@ -31,7 +31,7 @@ meld3==1.0.2
 orderedmultidict==0.7.11  # via htpasswd
 piexif==1.0.13
 python-dateutil==2.6.1    # via arrow, botocore
-raven[flask]==6.3.0
+raven[flask]==6.5.0
 requests==2.18.4
 s3transfer==0.1.12        # via boto3
 six==1.11.0               # via orderedmultidict, python-dateutil
