@@ -365,7 +365,7 @@ cat << 'EOF'
 #./${pkg}_tool config nginx 1.13.7
 #./${pkg}_tool config prometheus 2.0.0
 #./${pkg}_tool config alertmanager 0.11.0
-#./${pkg}_tool config node_exporter 0.15.1
+#./${pkg}_tool config node_exporter 0.15.2
 #./${pkg}_tool config pushgateway 0.4.0
 #
 # The following defaults are platform-specific.  Linux defaults are shown.
@@ -466,7 +466,7 @@ init() {
    set_value nginx 1.13.7
    set_value prometheus 2.0.0
    set_value alertmanager 0.11.0
-   set_value node_exporter 0.15.1
+   set_value node_exporter 0.15.2
    set_value pushgateway 0.4.0
    if [[ "$platform" == "Linux" ]]; then
       >&1 echo "Platform is linux."
@@ -716,7 +716,7 @@ update() {
       git pull
       newversion="$(pypi)"
     else
-       rawsite="https://raw.githubusercontent.com/LegumeFederation/${pkg}/master/build_scripts"
+       rawsite="https://raw.githubusercontent.com/EagleBytes2017/${pkg}/master/install"
        printf "Checking for self-update..."
        curl -L -s -o ${pkg}_tool.new ${rawsite}/${pkg}_tool.sh
        chmod 755 ${pkg}_tool.new

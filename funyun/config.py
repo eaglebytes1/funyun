@@ -215,7 +215,7 @@ class BaseConfig(object):
     DROPZONE_MAX_FILE_SIZE = 5
     DROPZONE_INPUT_NAME = 'image'
     DROPZONE_MAX_FILES = 1
-    DROPZONE_DEFAULT_MESSAGE = 'Drop images here or click here to upload'
+    DROPZONE_DEFAULT_MESSAGE = 'Click here to upload or take a pic'
     DROPZONE_REDIRECT_VIEW = 'analyze'
 
 
