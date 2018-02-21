@@ -113,7 +113,7 @@ def recognize_as_text():
 
 #
 # This is the main URL for the Funyun app.
-#
+
 @app.route('/funyun/recognize', methods=['POST', 'GET'])
 def recognize():
     global NAME, IMAGE
