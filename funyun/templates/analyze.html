@@ -32,10 +32,12 @@
             {% if face.emotions %}
                <ul>
                    {% for item in face.emotions %}
-                    <li>
-                    {{item}} ({{face.emotions[item]|round|int}}%)
-                    </li>
-                    {% endfor %}
+                      {% if face.emotions[item] >= 5 %}
+                       <li>
+                       {{item}} ({{face.emotions[item]|round|int}}%)
+                       </li>
+                      {% endif %}}
+                   {% endfor %}
                 </ul>
             {% endif %}
          {% endif %}
