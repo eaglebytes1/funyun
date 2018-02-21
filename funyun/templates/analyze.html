@@ -52,9 +52,11 @@
          {% else %}
             <ul>
             {% for item in labels %}
-               <li>
+                {% if labels[item] >= 60 %}
+                <li>
                 {{item}} ({{labels[item]|round|int}}%)
                </li>
+                {% endif %}
             {% endfor %}
             </ul>
          {% endif %}
