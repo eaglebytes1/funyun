@@ -48,6 +48,13 @@
             {{celebrity.desc}}
          {% endif %}
          {% else %}
+            <ul>
+            {% for item in labels %}
+               <li>
+                {{item}} ({{labels[item]|round|int}}%)
+               </li>
+            {% endfor %}
+            </ul>
            {{labels}}
          {% endif %}
      </td>
