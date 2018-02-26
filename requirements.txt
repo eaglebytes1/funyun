@@ -33,7 +33,7 @@ piexif==1.0.13
 python-dateutil==2.6.1    # via arrow, botocore
 raven[flask]==6.5.0
 requests==2.18.4
-s3transfer==0.1.12        # via boto3
+s3transfer==0.1.13        # via boto3
 six==1.11.0               # via orderedmultidict, python-dateutil
 superlance==1.0.0
 supervisor-wildcards==0.1.3
