@@ -67,7 +67,7 @@ def pass_data():
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsp('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_image(files):
     # If file wasn't uploaded, it's an error.
